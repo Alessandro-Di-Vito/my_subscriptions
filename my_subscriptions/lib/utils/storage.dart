@@ -32,6 +32,42 @@ abstract final class Storage {
     await prefs.setBool(_onboardingCompletedKey, value);
   }
 
+  static const _preferredCurrencyKey = 'PREFERRED_CURRENCY';
+  static const _notificationsEnabledKey = 'NOTIFICATIONS_ENABLED';
+
+  static Future<String> getPreferredCurrency() async {
+    final prefs = await _prefs();
+    return prefs.getString(_preferredCurrencyKey) ?? 'EUR';
+  }
+
+  static Future<void> setPreferredCurrency(String value) async {
+    final prefs = await _prefs();
+    await prefs.setString(_preferredCurrencyKey, value);
+  }
+
+  static Future<bool> getNotificationsEnabled() async {
+    final prefs = await _prefs();
+    return prefs.getBool(_notificationsEnabledKey) ?? false;
+  }
+
+  static Future<void> setNotificationsEnabled(bool value) async {
+    final prefs = await _prefs();
+    await prefs.setBool(_notificationsEnabledKey, value);
+  }
+
+  static const _notificationsPermissionAskedKey =
+      'NOTIFICATIONS_PERMISSION_ASKED';
+
+  static Future<bool> getNotificationsPermissionAsked() async {
+    final prefs = await _prefs();
+    return prefs.getBool(_notificationsPermissionAskedKey) ?? false;
+  }
+
+  static Future<void> setNotificationsPermissionAsked(bool value) async {
+    final prefs = await _prefs();
+    await prefs.setBool(_notificationsPermissionAskedKey, value);
+  }
+
   static Future<String?> getAccessToken() async {
     final prefs = await _prefs();
     return prefs.getString(_accessTokenKey);

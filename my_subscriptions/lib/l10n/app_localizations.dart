@@ -133,6 +133,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'PRIVACY & TERMS'**
   String get welcomePrivacyTerms;
+
+  /// Onboarding step 1 title
+  ///
+  /// In en, this message translates to:
+  /// **'All your subscriptions in one place'**
+  String get onboardingTrackTitle;
+
+  /// Onboarding step 1 subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Add Netflix, Spotify, gym and more. Organize them by category and always know what you are paying for.'**
+  String get onboardingTrackSubtitle;
+
+  /// Onboarding step 2 title
+  ///
+  /// In en, this message translates to:
+  /// **'See where your money goes'**
+  String get onboardingAnalyzeTitle;
+
+  /// Onboarding step 2 subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Check your monthly and yearly spending, compare costs and spot subscriptions you no longer use.'**
+  String get onboardingAnalyzeSubtitle;
+
+  /// Onboarding step 3 title
+  ///
+  /// In en, this message translates to:
+  /// **'Never miss a renewal'**
+  String get onboardingRemindTitle;
+
+  /// Onboarding step 3 subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Get a reminder before each renewal so you can cancel in time or budget for the expense.'**
+  String get onboardingRemindSubtitle;
+
+  /// Continue button on onboarding
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get onboardingContinue;
+
+  /// Finish button on onboarding
+  ///
+  /// In en, this message translates to:
+  /// **'Get started'**
+  String get onboardingFinish;
+
+  /// Back button on onboarding
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get onboardingBack;
+
+  /// Onboarding step progress label
+  ///
+  /// In en, this message translates to:
+  /// **'Step {current} of {total}'**
+  String onboardingStepProgress(int current, int total);
 }
 
 class _AppLocalizationsDelegate

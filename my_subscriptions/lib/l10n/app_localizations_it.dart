@@ -26,4 +26,39 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get welcomePrivacyTerms => 'PRIVACY E TERMINI';
+
+  @override
+  String get onboardingTrackTitle => 'Tutti i tuoi abbonamenti in un posto';
+
+  @override
+  String get onboardingTrackSubtitle =>
+      'Aggiungi Netflix, Spotify, palestra e altro. Organizzali per categoria e sappi sempre per cosa stai pagando.';
+
+  @override
+  String get onboardingAnalyzeTitle => 'Scopri dove vanno i tuoi soldi';
+
+  @override
+  String get onboardingAnalyzeSubtitle =>
+      'Controlla spesa mensile e annuale, confronta i costi e individua gli abbonamenti che non usi più.';
+
+  @override
+  String get onboardingRemindTitle => 'Non perdere mai un rinnovo';
+
+  @override
+  String get onboardingRemindSubtitle =>
+      'Ricevi un promemoria prima di ogni rinnovo per disdire in tempo o organizzare la spesa.';
+
+  @override
+  String get onboardingContinue => 'Continua';
+
+  @override
+  String get onboardingFinish => 'Inizia';
+
+  @override
+  String get onboardingBack => 'Indietro';
+
+  @override
+  String onboardingStepProgress(int current, int total) {
+    return 'Passo $current di $total';
+  }
 }

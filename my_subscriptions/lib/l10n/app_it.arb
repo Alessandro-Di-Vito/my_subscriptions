@@ -23,5 +23,53 @@
   "welcomePrivacyTerms": "PRIVACY E TERMINI",
   "@welcomePrivacyTerms": {
     "description": "Privacy and terms label on welcome screen"
+  },
+  "onboardingTrackTitle": "Tutti i tuoi abbonamenti in un posto",
+  "@onboardingTrackTitle": {
+    "description": "Onboarding step 1 title"
+  },
+  "onboardingTrackSubtitle": "Aggiungi Netflix, Spotify, palestra e altro. Organizzali per categoria e sappi sempre per cosa stai pagando.",
+  "@onboardingTrackSubtitle": {
+    "description": "Onboarding step 1 subtitle"
+  },
+  "onboardingAnalyzeTitle": "Scopri dove vanno i tuoi soldi",
+  "@onboardingAnalyzeTitle": {
+    "description": "Onboarding step 2 title"
+  },
+  "onboardingAnalyzeSubtitle": "Controlla spesa mensile e annuale, confronta i costi e individua gli abbonamenti che non usi più.",
+  "@onboardingAnalyzeSubtitle": {
+    "description": "Onboarding step 2 subtitle"
+  },
+  "onboardingRemindTitle": "Non perdere mai un rinnovo",
+  "@onboardingRemindTitle": {
+    "description": "Onboarding step 3 title"
+  },
+  "onboardingRemindSubtitle": "Ricevi un promemoria prima di ogni rinnovo per disdire in tempo o organizzare la spesa.",
+  "@onboardingRemindSubtitle": {
+    "description": "Onboarding step 3 subtitle"
+  },
+  "onboardingContinue": "Continua",
+  "@onboardingContinue": {
+    "description": "Continue button on onboarding"
+  },
+  "onboardingFinish": "Inizia",
+  "@onboardingFinish": {
+    "description": "Finish button on onboarding"
+  },
+  "onboardingBack": "Indietro",
+  "@onboardingBack": {
+    "description": "Back button on onboarding"
+  },
+  "onboardingStepProgress": "Passo {current} di {total}",
+  "@onboardingStepProgress": {
+    "description": "Onboarding step progress label",
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
   }
 }

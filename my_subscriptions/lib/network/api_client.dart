@@ -88,6 +88,33 @@ class ApiClient {
     }
   }
 
+  Future<Response<T>> patch<T>(
+    String path, {
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    bool showErrorBanner = true,
+  }) async {
+    try {
+      return await _dio.patch<T>(
+        path,
+        data: data,
+        queryParameters: queryParameters,
+        options: options,
+      );
+    } on DioException catch (error) {
+      throw _handleError(
+        ApiErrorHandler.fromDioException(error),
+        showErrorBanner: showErrorBanner,
+      );
+    } catch (error) {
+      throw _handleError(
+        ApiErrorHandler.fromUnknown(error),
+        showErrorBanner: showErrorBanner,
+      );
+    }
+  }
+
   Future<Response<T>> delete<T>(
     String path, {
     Object? data,

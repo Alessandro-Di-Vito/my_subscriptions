@@ -6,12 +6,11 @@ import 'package:my_subscriptions/l10n/app_localizations.dart';
 import 'package:my_subscriptions/router/app_router.dart';
 import 'package:my_subscriptions/screens/welcome/welcome_cubit.dart';
 import 'package:my_subscriptions/screens/welcome/welcome_state.dart';
+import 'package:my_subscriptions/services/auth_service.dart';
 import 'package:my_subscriptions/services/service_locator.dart';
-import 'package:my_subscriptions/services/user_service.dart';
 import 'package:my_subscriptions/utils/colors.dart';
 import 'package:my_subscriptions/utils/font_size.dart';
 import 'package:my_subscriptions/utils/smooth_style.dart';
-import 'package:my_subscriptions/utils/storage.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -20,7 +19,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => WelcomeCubit(getIt<UserService>())..start(),
+      create: (_) => WelcomeCubit(getIt<AuthService>())..start(),
       child: const _WelcomeView(),
     );
   }
@@ -259,13 +258,8 @@ class _AnimatedWelcomeViewState extends State<_AnimatedWelcomeView>
 
                                           return ButtonWidget(
                                             text: l10n.welcomeButton,
-                                            onPressed: () async {
-                                              await Storage.setAlreadyLaunch(
-                                                true,
-                                              );
-                                              if (context.mounted) {
-                                                context.go(AppRoutes.auth);
-                                              }
+                                            onPressed: () {
+                                              context.go(AppRoutes.onboarding);
                                             },
                                           );
                                         },

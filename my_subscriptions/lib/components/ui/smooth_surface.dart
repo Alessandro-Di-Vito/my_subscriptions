@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_subscriptions/utils/smooth_style.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
-/// Superficie arrotondata con smooth corner — base per card, bottoni, input, dialog.
+/// Wrapper su [SmoothContainer] (`smooth_corner`) per card, input, dialog.
 class SmoothSurface extends StatelessWidget {
   const SmoothSurface({
     required this.child,
@@ -15,7 +15,6 @@ class SmoothSurface extends StatelessWidget {
     this.height,
     this.padding,
     this.onTap,
-    this.clipBehavior = Clip.antiAlias,
   });
 
   final Widget child;
@@ -27,14 +26,10 @@ class SmoothSurface extends StatelessWidget {
   final double? height;
   final EdgeInsetsGeometry? padding;
   final VoidCallback? onTap;
-  final Clip clipBehavior;
 
   @override
   Widget build(BuildContext context) {
     final radius = borderRadius ?? SmoothStyle.borderRadius;
-    final content = padding != null
-        ? Padding(padding: padding!, child: child)
-        : child;
 
     Widget surface = SmoothContainer(
       smoothness: smoothness ?? SmoothStyle.smoothness,
@@ -43,18 +38,15 @@ class SmoothSurface extends StatelessWidget {
       side: side ?? BorderSide.none,
       width: width,
       height: height,
-      clipBehavior: clipBehavior,
-      child: content,
+      padding: padding,
+      child: child,
     );
 
     if (onTap != null) {
-      surface = Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: radius,
-          child: surface,
-        ),
+      surface = GestureDetector(
+        onTap: onTap,
+        behavior: HitTestBehavior.opaque,
+        child: surface,
       );
     }
 
@@ -62,8 +54,8 @@ class SmoothSurface extends StatelessWidget {
   }
 }
 
-/// Bordo smooth per bottom sheet e dialog di sistema.
-RoundedRectangleBorder smoothSheetShape({BorderRadius? borderRadius}) {
+/// Bordo smooth per bottom sheet.
+ShapeBorder smoothSheetShape({BorderRadius? borderRadius}) {
   return SmoothRectangleBorder(
     borderRadius: borderRadius ?? SmoothStyle.borderRadiusSheet,
     smoothness: SmoothStyle.smoothness,

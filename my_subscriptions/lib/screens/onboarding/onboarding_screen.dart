@@ -8,7 +8,9 @@ import 'package:my_subscriptions/l10n/app_localizations.dart';
 import 'package:my_subscriptions/router/app_router.dart';
 import 'package:my_subscriptions/screens/onboarding/onboarding_cubit.dart';
 import 'package:my_subscriptions/screens/onboarding/onboarding_state.dart';
+import 'package:my_subscriptions/components/ui/smooth_surface.dart';
 import 'package:my_subscriptions/utils/font_size.dart';
+import 'package:my_subscriptions/utils/smooth_style.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -122,13 +124,24 @@ class _ProgressHeader extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: LinearProgressIndicator(
-              minHeight: 4,
-              value: state.progress,
-              backgroundColor: scheme.primary.withValues(alpha: 0.16),
-              color: scheme.primary,
+          child: SmoothSurface(
+            height: 4,
+            width: double.infinity,
+            borderRadius: SmoothStyle.borderRadius,
+            color: scheme.primary.withValues(alpha: 0.16),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                return Align(
+                  alignment: Alignment.centerLeft,
+                  child: SmoothSurface(
+                    height: 4,
+                    width: constraints.maxWidth * state.progress,
+                    borderRadius: SmoothStyle.borderRadius,
+                    color: scheme.primary,
+                    child: const SizedBox.shrink(),
+                  ),
+                );
+              },
             ),
           ),
         ),
@@ -168,7 +181,7 @@ class _IntroStep extends StatelessWidget {
       children: [
         const Spacer(),
         AppAnimatedAppear(
-          child: AppLogoMark(size: 120, borderRadius: 24),
+          child: AppLogoMark(size: 120),
         ),
         const SizedBox(height: 36),
         Text(

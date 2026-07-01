@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_subscriptions/components/dialogs/subscription_dialogs.dart';
 import 'package:my_subscriptions/components/subscription/subscription_brand_icon.dart';
-import 'package:my_subscriptions/components/ui/app_card.dart';
 import 'package:my_subscriptions/components/ui/app_animated_appear.dart';
+import 'package:my_subscriptions/components/ui/app_card.dart';
+import 'package:my_subscriptions/components/ui/smooth_surface.dart';
+import 'package:my_subscriptions/utils/smooth_style.dart';
 import 'package:my_subscriptions/components/ui/app_empty_state.dart';
 import 'package:my_subscriptions/components/ui/app_fields.dart';
 import 'package:my_subscriptions/components/ui/app_page.dart';
@@ -134,15 +136,15 @@ class _SubscriptionsTabScreenState extends State<SubscriptionsTabScreen> {
                           child: Dismissible(
                         key: ValueKey(item.id),
                         direction: DismissDirection.endToStart,
-                        background: Container(
-                          alignment: Alignment.centerRight,
-                          padding: const EdgeInsets.only(right: 20),
-                          decoration: BoxDecoration(
+                          background: SmoothSurface(
+                            borderRadius: SmoothStyle.borderRadius,
                             color: scheme.error,
-                            borderRadius: BorderRadius.circular(16),
+                            padding: const EdgeInsets.only(right: 20),
+                            child: const Align(
+                              alignment: Alignment.centerRight,
+                              child: Icon(Icons.delete, color: Colors.white),
+                            ),
                           ),
-                          child: const Icon(Icons.delete, color: Colors.white),
-                        ),
                         confirmDismiss: (_) {
                           return SubscriptionDialogs.confirmDelete(
                             context,

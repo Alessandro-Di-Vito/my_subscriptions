@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_subscriptions/components/ui/smooth_surface.dart';
+import 'package:my_subscriptions/utils/smooth_style.dart';
 
 class AppCard extends StatelessWidget {
   const AppCard({
@@ -9,6 +11,7 @@ class AppCard extends StatelessWidget {
     this.borderColor,
     this.borderWidth = 1,
     this.backgroundColor,
+    this.borderRadius,
   });
 
   final Widget child;
@@ -17,30 +20,23 @@ class AppCard extends StatelessWidget {
   final Color? borderColor;
   final double borderWidth;
   final Color? backgroundColor;
+  final BorderRadius? borderRadius;
 
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
 
-    return Material(
+    return SmoothSurface(
+      onTap: onTap,
+      width: double.infinity,
+      borderRadius: borderRadius ?? SmoothStyle.borderRadius,
       color: backgroundColor ?? scheme.surface,
-      borderRadius: BorderRadius.circular(16),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
-        child: Container(
-          width: double.infinity,
-          padding: padding,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: borderColor ?? scheme.outline.withValues(alpha: 0.5),
-              width: borderWidth,
-            ),
-          ),
-          child: child,
-        ),
+      side: BorderSide(
+        color: borderColor ?? scheme.outline.withValues(alpha: 0.5),
+        width: borderWidth,
       ),
+      padding: padding,
+      child: child,
     );
   }
 }
@@ -125,13 +121,11 @@ class AppSettingsTile extends StatelessWidget {
       subtitle: subtitle,
       onTap: onTap,
       leading: icon != null
-          ? Container(
+          ? SmoothSurface(
               width: 44,
               height: 44,
-              decoration: BoxDecoration(
-                color: scheme.primaryContainer,
-                borderRadius: BorderRadius.circular(12),
-              ),
+              borderRadius: SmoothStyle.borderRadius,
+              color: scheme.primaryContainer,
               child: Icon(icon, color: scheme.primary, size: 22),
             )
           : null,

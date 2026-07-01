@@ -6,6 +6,8 @@ import 'package:my_subscriptions/components/ui/app_animated_appear.dart';
 import 'package:my_subscriptions/components/ui/app_card.dart';
 import 'package:my_subscriptions/components/ui/app_empty_state.dart';
 import 'package:my_subscriptions/components/ui/app_logo.dart';
+import 'package:my_subscriptions/components/ui/smooth_surface.dart';
+import 'package:my_subscriptions/utils/smooth_style.dart';
 import 'package:my_subscriptions/l10n/app_localizations.dart';
 import 'package:my_subscriptions/components/ui/app_hero_card.dart';
 import 'package:my_subscriptions/components/ui/app_section_header.dart';
@@ -159,12 +161,25 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _openNew,
-        backgroundColor: scheme.primary,
-        foregroundColor: scheme.onPrimary,
-        icon: const Icon(Icons.add),
-        label: Text(l10n.addSubscription),
+      floatingActionButton: SmoothSurface(
+        onTap: _openNew,
+        borderRadius: SmoothStyle.borderRadius,
+        color: scheme.primary,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.add_rounded, color: scheme.onPrimary),
+            const SizedBox(width: 8),
+            Text(
+              l10n.addSubscription,
+              style: TextStyle(
+                color: scheme.onPrimary,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
       ),
       body: SafeArea(
         child: _loading
@@ -179,7 +194,7 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
                     AppAnimatedAppear(
                       child: Row(
                         children: [
-                          const AppLogoMark(size: 40, borderRadius: 12),
+                          const AppLogoMark(size: 40),
                           const SizedBox(width: 12),
                           const Expanded(child: AppLogoTitle(compact: true)),
                           IconButton(

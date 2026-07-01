@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:my_subscriptions/components/ui/smooth_surface.dart';
 
 class DonutSegment {
   const DonutSegment({
@@ -139,13 +140,12 @@ class DonutLegend extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 8),
           child: Row(
             children: [
-              Container(
+              SmoothSurface(
                 width: 10,
                 height: 10,
-                decoration: BoxDecoration(
-                  color: segment.color,
-                  shape: BoxShape.circle,
-                ),
+                borderRadius: BorderRadius.circular(5),
+                color: segment.color,
+                child: const SizedBox.shrink(),
               ),
               const SizedBox(width: 10),
               Expanded(

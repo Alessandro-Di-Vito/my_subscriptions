@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_subscriptions/components/ui/smooth_surface.dart';
 import 'package:my_subscriptions/utils/smooth_style.dart';
+import 'package:smooth_corner/smooth_corner.dart';
 
 class AppPrimaryButton extends StatelessWidget {
   const AppPrimaryButton({
@@ -9,51 +9,60 @@ class AppPrimaryButton extends StatelessWidget {
     this.onPressed,
     this.icon,
     this.height = 52,
+    this.backgroundColor,
+    this.foregroundColor,
   });
 
   final String label;
   final VoidCallback? onPressed;
   final IconData? icon;
   final double height;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
 
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     final enabled = onPressed != null;
+    final fill = backgroundColor ?? scheme.primary;
+    final foreground = foregroundColor ?? scheme.onPrimary;
 
-    return Opacity(
-      opacity: enabled ? 1 : 0.65,
-      child: SmoothSurface(
-        onTap: onPressed,
-        width: double.infinity,
-        height: height,
-        borderRadius: SmoothStyle.borderRadiusMedium,
-        color: scheme.primary,
-        child: Center(
-          child: icon != null
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(icon, size: 20, color: scheme.onPrimary),
-                    const SizedBox(width: 8),
-                    Text(
-                      label,
-                      style: TextStyle(
-                        color: scheme.onPrimary,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 16,
+    return GestureDetector(
+      onTap: onPressed,
+      child: Opacity(
+        opacity: enabled ? 1 : 0.65,
+        child: SmoothContainer(
+          smoothness: SmoothStyle.smoothness,
+          borderRadius: SmoothStyle.borderRadius,
+          color: fill,
+          width: double.infinity,
+          height: height,
+          child: Center(
+            child: icon != null
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(icon, size: 20, color: foreground),
+                      const SizedBox(width: 8),
+                      Text(
+                        label,
+                        style: TextStyle(
+                          color: foreground,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 16,
+                        ),
                       ),
+                    ],
+                  )
+                : Text(
+                    label,
+                    style: TextStyle(
+                      color: foreground,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 16,
                     ),
-                  ],
-                )
-              : Text(
-                  label,
-                  style: TextStyle(
-                    color: scheme.onPrimary,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 16,
                   ),
-                ),
+          ),
         ),
       ),
     );
@@ -77,22 +86,25 @@ class AppSecondaryButton extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     final enabled = onPressed != null;
 
-    return Opacity(
-      opacity: enabled ? 1 : 0.65,
-      child: SmoothSurface(
-        onTap: onPressed,
-        width: double.infinity,
-        height: height,
-        borderRadius: SmoothStyle.borderRadiusMedium,
-        color: Colors.transparent,
-        side: BorderSide(color: scheme.outline),
-        child: Center(
-          child: Text(
-            label,
-            style: TextStyle(
-              color: scheme.onSurface,
-              fontWeight: FontWeight.w600,
-              fontSize: 16,
+    return GestureDetector(
+      onTap: onPressed,
+      child: Opacity(
+        opacity: enabled ? 1 : 0.65,
+        child: SmoothContainer(
+          smoothness: SmoothStyle.smoothness,
+          borderRadius: SmoothStyle.borderRadius,
+          color: Colors.transparent,
+          side: BorderSide(color: scheme.outline),
+          width: double.infinity,
+          height: height,
+          child: Center(
+            child: Text(
+              label,
+              style: TextStyle(
+                color: scheme.onSurface,
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+              ),
             ),
           ),
         ),
@@ -109,13 +121,19 @@ class AppTextLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: onPressed,
-      child: Text(
-        label,
-        style: TextStyle(
-          color: Theme.of(context).colorScheme.primary,
-          fontWeight: FontWeight.w600,
+    final scheme = Theme.of(context).colorScheme;
+
+    return GestureDetector(
+      onTap: onPressed,
+      behavior: HitTestBehavior.opaque,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        child: Text(
+          label,
+          style: TextStyle(
+            color: scheme.primary,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
     );
@@ -138,26 +156,29 @@ class AppCompactButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
 
-    return SmoothSurface(
+    return GestureDetector(
       onTap: onPressed,
-      borderRadius: SmoothStyle.borderRadiusMedium,
-      color: scheme.primary,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (icon != null) ...[
-            Icon(icon, size: 18, color: scheme.onPrimary),
-            const SizedBox(width: 6),
-          ],
-          Text(
-            label,
-            style: TextStyle(
-              color: scheme.onPrimary,
-              fontWeight: FontWeight.w700,
+      child: SmoothContainer(
+        smoothness: SmoothStyle.smoothness,
+        borderRadius: SmoothStyle.borderRadius,
+        color: scheme.primary,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (icon != null) ...[
+              Icon(icon, size: 18, color: scheme.onPrimary),
+              const SizedBox(width: 6),
+            ],
+            Text(
+              label,
+              style: TextStyle(
+                color: scheme.onPrimary,
+                fontWeight: FontWeight.w700,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

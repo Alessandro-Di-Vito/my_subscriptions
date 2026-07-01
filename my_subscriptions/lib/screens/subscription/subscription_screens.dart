@@ -11,6 +11,7 @@ import 'package:my_subscriptions/models/subscription/subscription_models.dart';
 import 'package:my_subscriptions/router/app_router.dart';
 import 'package:my_subscriptions/services/service_locator.dart';
 import 'package:my_subscriptions/services/subscription_service.dart';
+import 'package:my_subscriptions/components/ui/smooth_surface.dart';
 import 'package:my_subscriptions/utils/money_format.dart';
 import 'package:my_subscriptions/utils/subscription_labels.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -201,13 +202,12 @@ class _SubscriptionDetailScreenState extends State<SubscriptionDetailScreen> {
                           padding: const EdgeInsets.symmetric(vertical: 6),
                           child: Row(
                             children: [
-                              Container(
+                              SmoothSurface(
                                 width: 8,
                                 height: 8,
-                                decoration: BoxDecoration(
-                                  color: scheme.primary,
-                                  shape: BoxShape.circle,
-                                ),
+                                borderRadius: BorderRadius.circular(4),
+                                color: scheme.primary,
+                                child: const SizedBox.shrink(),
                               ),
                               const SizedBox(width: 12),
                               Expanded(

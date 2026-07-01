@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_subscriptions/theme/app_palette.dart';
 import 'package:my_subscriptions/theme/app_theme_extension.dart';
+import 'package:my_subscriptions/utils/smooth_style.dart';
+import 'package:smooth_corner/smooth_corner.dart';
 
 abstract final class AppTheme {
   static ThemeData light() {
@@ -100,10 +102,13 @@ abstract final class AppTheme {
       cardTheme: CardThemeData(
         color: scheme.surface,
         elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+        shape: SmoothRectangleBorder(
+          borderRadius: SmoothStyle.borderRadius,
+          smoothness: SmoothStyle.smoothness,
           side: BorderSide(
-            color: scheme.outline.withValues(alpha: scheme.brightness == Brightness.dark ? 0.35 : 1),
+            color: scheme.outline.withValues(
+              alpha: scheme.brightness == Brightness.dark ? 0.35 : 1,
+            ),
           ),
         ),
       ),
@@ -151,8 +156,9 @@ abstract final class AppTheme {
           foregroundColor: scheme.onPrimary,
           minimumSize: const Size(0, 52),
           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(14),
+          shape: SmoothRectangleBorder(
+            borderRadius: SmoothStyle.borderRadius,
+            smoothness: SmoothStyle.smoothness,
           ),
           textStyle: const TextStyle(
             fontSize: 16,
@@ -182,6 +188,12 @@ abstract final class AppTheme {
       ),
       segmentedButtonTheme: SegmentedButtonThemeData(
         style: ButtonStyle(
+          shape: WidgetStateProperty.all(
+            SmoothRectangleBorder(
+              borderRadius: SmoothStyle.borderRadius,
+              smoothness: SmoothStyle.smoothness,
+            ),
+          ),
           foregroundColor: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.selected)) {
               return scheme.onPrimaryContainer;
@@ -202,20 +214,13 @@ abstract final class AppTheme {
       ),
       snackBarTheme: SnackBarThemeData(
         behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
       dialogTheme: DialogThemeData(
-        backgroundColor: scheme.surface,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        titleTextStyle: TextStyle(
-          color: scheme.onSurface,
-          fontSize: 20,
-          fontWeight: FontWeight.w700,
-        ),
-        contentTextStyle: TextStyle(
-          color: scheme.onSurfaceVariant,
-          fontSize: 15,
-        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        insetPadding: const EdgeInsets.symmetric(horizontal: 28),
       ),
       textTheme: TextTheme(
         headlineMedium: TextStyle(

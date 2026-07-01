@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_subscriptions/components/sketch/sketch_date_picker.dart';
+import 'package:my_subscriptions/components/ui/smooth_surface.dart';
+import 'package:my_subscriptions/utils/smooth_style.dart';
 
 class AppField extends StatelessWidget {
   const AppField({
@@ -42,19 +44,28 @@ class AppField extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        TextField(
-          controller: controller,
-          obscureText: obscureText,
-          keyboardType: keyboardType,
-          maxLines: maxLines,
-          readOnly: readOnly,
-          onTap: onTap,
-          decoration: InputDecoration(
-            hintText: hint,
-            prefixIcon: prefixIcon != null ? Icon(prefixIcon, size: 20) : null,
-            suffixIcon: suffixIcon,
-            filled: true,
-            fillColor: scheme.surface,
+        SmoothSurface(
+          width: double.infinity,
+          borderRadius: SmoothStyle.borderRadius,
+          color: scheme.surface,
+          side: BorderSide(color: scheme.outline.withValues(alpha: 0.6)),
+          child: TextField(
+            controller: controller,
+            obscureText: obscureText,
+            keyboardType: keyboardType,
+            maxLines: maxLines,
+            readOnly: readOnly,
+            onTap: onTap,
+            decoration: InputDecoration(
+              hintText: hint,
+              prefixIcon: prefixIcon != null ? Icon(prefixIcon, size: 20) : null,
+              suffixIcon: suffixIcon,
+              border: InputBorder.none,
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 14,
+              ),
+            ),
           ),
         ),
       ],
@@ -95,12 +106,12 @@ class AppDropdownField<T> extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        InputDecorator(
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: scheme.surface,
-            prefixIcon: prefixIcon != null ? Icon(prefixIcon, size: 20) : null,
-          ),
+        SmoothSurface(
+          width: double.infinity,
+          borderRadius: SmoothStyle.borderRadius,
+          color: scheme.surface,
+          side: BorderSide(color: scheme.outline.withValues(alpha: 0.6)),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
           child: DropdownButtonHideUnderline(
             child: DropdownButton<T>(
               value: value,
@@ -179,24 +190,35 @@ class AppCategoryChips extends StatelessWidget {
           final item = items[index];
           final selected = item.id == selectedId;
 
-          return FilterChip(
-            selected: selected,
-            showCheckmark: false,
-            avatar: Icon(
-              item.icon,
-              size: 16,
-              color: selected ? scheme.onPrimaryContainer : scheme.onSurfaceVariant,
-            ),
-            label: Text(item.name),
-            onSelected: (_) => onSelected(item.id),
-            selectedColor: scheme.primaryContainer,
-            backgroundColor: scheme.surface,
+          return SmoothSurface(
+            onTap: () => onSelected(item.id),
+            borderRadius: SmoothStyle.borderRadius,
+            color: selected ? scheme.primaryContainer : scheme.surface,
             side: BorderSide(
               color: selected ? scheme.primary : scheme.outline,
             ),
-            labelStyle: TextStyle(
-              fontWeight: FontWeight.w600,
-              color: selected ? scheme.onPrimaryContainer : scheme.onSurface,
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  item.icon,
+                  size: 16,
+                  color: selected
+                      ? scheme.onPrimaryContainer
+                      : scheme.onSurfaceVariant,
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  item.name,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: selected
+                        ? scheme.onPrimaryContainer
+                        : scheme.onSurface,
+                  ),
+                ),
+              ],
             ),
           );
         },

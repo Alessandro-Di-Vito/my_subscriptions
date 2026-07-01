@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:my_subscriptions/utils/smooth_style.dart';
+import 'package:smooth_corner/smooth_corner.dart';
 
 class AppLogoMark extends StatelessWidget {
   const AppLogoMark({
     super.key,
     this.size = 64,
-    this.borderRadius = 16,
   });
 
   final double size;
-  final double borderRadius;
 
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
 
-    return Container(
-      width: size,
-      height: size,
+    return DecoratedBox(
       decoration: BoxDecoration(
-        color: scheme.primary,
-        borderRadius: BorderRadius.circular(borderRadius),
         boxShadow: [
           BoxShadow(
             color: scheme.primary.withValues(alpha: 0.35),
@@ -28,10 +24,17 @@ class AppLogoMark extends StatelessWidget {
           ),
         ],
       ),
-      child: Icon(
-        Icons.layers_rounded,
-        color: scheme.onPrimary,
-        size: size * 0.5,
+      child: SmoothContainer(
+        width: size,
+        height: size,
+        smoothness: SmoothStyle.smoothness,
+        borderRadius: SmoothStyle.borderRadius,
+        color: scheme.primary,
+        child: Icon(
+          Icons.layers_rounded,
+          color: scheme.onPrimary,
+          size: size * 0.5,
+        ),
       ),
     );
   }

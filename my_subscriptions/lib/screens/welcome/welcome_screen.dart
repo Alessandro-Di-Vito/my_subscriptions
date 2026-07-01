@@ -174,7 +174,7 @@ class _AnimatedWelcomeViewState extends State<_AnimatedWelcomeView>
                             child: Center(child: child!),
                           );
                         },
-                        child: const AppLogoMark(size: 140, borderRadius: 28),
+                        child: const AppLogoMark(size: 140),
                       ),
                       Positioned.fill(
                         child: Padding(

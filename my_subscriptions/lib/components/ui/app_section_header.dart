@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_subscriptions/components/ui/app_buttons.dart';
 import 'package:my_subscriptions/components/ui/app_card.dart';
 
 class AppSectionHeader extends StatelessWidget {
@@ -15,8 +16,6 @@ class AppSectionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-
     return Row(
       children: [
         Expanded(
@@ -28,16 +27,7 @@ class AppSectionHeader extends StatelessWidget {
           ),
         ),
         if (actionLabel != null && onAction != null)
-          TextButton(
-            onPressed: onAction,
-            child: Text(
-              actionLabel!,
-              style: TextStyle(
-                color: scheme.primary,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
+          AppTextLink(label: actionLabel!, onPressed: onAction),
       ],
     );
   }
@@ -101,12 +91,10 @@ class AppFeaturedSubscriptionCard extends StatelessWidget {
           ),
           if (onDetails != null) ...[
             const SizedBox(height: 14),
-            SizedBox(
-              width: double.infinity,
-              child: FilledButton(
-                onPressed: onDetails,
-                child: const Text('Vedi dettagli'),
-              ),
+            AppPrimaryButton(
+              label: 'Vedi dettagli',
+              height: 46,
+              onPressed: onDetails,
             ),
           ],
         ],

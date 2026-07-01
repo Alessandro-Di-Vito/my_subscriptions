@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_subscriptions/utils/smooth_style.dart';
 import 'package:simple_icons/simple_icons.dart';
+import 'package:smooth_corner/smooth_corner.dart';
 
 abstract final class SubscriptionBrandIcon {
   static IconData? iconForKey(String? iconKey) {
@@ -121,13 +123,12 @@ class SubscriptionBrandAvatar extends StatelessWidget {
         ? name!.characters.first.toUpperCase()
         : '?';
 
-    return Container(
+    return SmoothContainer(
       width: size,
       height: size,
-      decoration: BoxDecoration(
-        color: color,
-        shape: BoxShape.circle,
-      ),
+      smoothness: SmoothStyle.smoothness,
+      borderRadius: BorderRadius.circular(size / 2),
+      color: color,
       alignment: Alignment.center,
       child: icon != null
           ? Icon(icon, color: foreground, size: size * 0.5)

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_subscriptions/components/sketch/sketch_date_picker.dart';
+import 'package:my_subscriptions/utils/smooth_style.dart';
+import 'package:smooth_corner/smooth_corner.dart';
 
 class AppWeekCalendar extends StatelessWidget {
   const AppWeekCalendar({
@@ -40,14 +42,12 @@ class AppWeekCalendar extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              Container(
+              SmoothContainer(
                 width: 40,
                 height: 40,
-                decoration: BoxDecoration(
-                  color: isSelected ? scheme.primary : Colors.transparent,
-                  shape: BoxShape.circle,
-                ),
-                alignment: Alignment.center,
+                smoothness: SmoothStyle.smoothness,
+                borderRadius: BorderRadius.circular(20),
+                color: isSelected ? scheme.primary : Colors.transparent,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -61,13 +61,14 @@ class AppWeekCalendar extends StatelessWidget {
                       ),
                     ),
                     if (hasMark && !isSelected)
-                      Container(
-                        width: 4,
-                        height: 4,
-                        margin: const EdgeInsets.only(top: 2),
-                        decoration: BoxDecoration(
+                      Padding(
+                        padding: const EdgeInsets.only(top: 2),
+                        child: SmoothContainer(
+                          width: 4,
+                          height: 4,
+                          smoothness: SmoothStyle.smoothness,
+                          borderRadius: BorderRadius.circular(2),
                           color: scheme.primary,
-                          shape: BoxShape.circle,
                         ),
                       ),
                   ],
@@ -170,12 +171,10 @@ class AppMonthCalendar extends StatelessWidget {
 
             return GestureDetector(
               onTap: () => onDaySelected(date),
-              child: Container(
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: isSelected ? scheme.primary : null,
-                  shape: BoxShape.circle,
-                ),
+              child: SmoothContainer(
+                smoothness: SmoothStyle.smoothness,
+                borderRadius: BorderRadius.circular(18),
+                color: isSelected ? scheme.primary : Colors.transparent,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -189,13 +188,12 @@ class AppMonthCalendar extends StatelessWidget {
                       ),
                     ),
                     if (hasMark && !isSelected)
-                      Container(
+                      SmoothContainer(
                         width: 4,
                         height: 4,
-                        decoration: BoxDecoration(
-                          color: scheme.primary,
-                          shape: BoxShape.circle,
-                        ),
+                        smoothness: SmoothStyle.smoothness,
+                        borderRadius: BorderRadius.circular(2),
+                        color: scheme.primary,
                       ),
                   ],
                 ),

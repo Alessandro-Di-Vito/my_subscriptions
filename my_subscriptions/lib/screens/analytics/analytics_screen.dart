@@ -15,6 +15,7 @@ import 'package:my_subscriptions/services/analytics_service.dart';
 import 'package:my_subscriptions/services/service_locator.dart';
 import 'package:my_subscriptions/theme/app_palette.dart';
 import 'package:my_subscriptions/theme/app_theme_extension.dart';
+import 'package:my_subscriptions/components/ui/smooth_surface.dart';
 import 'package:my_subscriptions/utils/money_format.dart';
 
 class AnalyticsTabScreen extends StatefulWidget {
@@ -340,12 +341,13 @@ class _AnalyticsTabScreenState extends State<AnalyticsTabScreen> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  Container(
-                                    height: height,
-                                    decoration: BoxDecoration(
-                                      color: scheme.primary,
-                                      borderRadius: BorderRadius.circular(6),
+                                  SmoothSurface(
+                                    height: height < 4 ? 4 : height,
+                                    borderRadius: const BorderRadius.vertical(
+                                      top: Radius.circular(12),
                                     ),
+                                    color: scheme.primary,
+                                    child: const SizedBox.shrink(),
                                   ),
                                   const SizedBox(height: 6),
                                   Text(

@@ -1,0 +1,27 @@
+{
+  "@@locale": "it",
+  "benvenuto": "Benvenuto",
+  "@benvenuto": {
+    "description": "Welcome message"
+  },
+  "welcomeTitle": "Benvenuto",
+  "@welcomeTitle": {
+    "description": "Welcome screen title"
+  },
+  "welcomeSubtitle": "Tieni traccia e gestisci i tuoi abbonamenti in un unico posto.",
+  "@welcomeSubtitle": {
+    "description": "Welcome screen subtitle"
+  },
+  "welcomeButton": "Inizia",
+  "@welcomeButton": {
+    "description": "Welcome screen primary button"
+  },
+  "welcomeLanguage": "Italiano",
+  "@welcomeLanguage": {
+    "description": "Current language label on welcome screen"
+  },
+  "welcomePrivacyTerms": "PRIVACY E TERMINI",
+  "@welcomePrivacyTerms": {
+    "description": "Privacy and terms label on welcome screen"
+  }
+}

@@ -22,6 +22,7 @@ abstract final class ApiEndpoints {
   static String subscription(String id) => '/subscriptions/$id';
   static const subscriptionsUpcoming = '/subscriptions/upcoming';
   static const subscriptionsSummary = '/subscriptions/summary';
+  static const subscriptionsPresets = '/subscriptions/presets';
   static String subscriptionRenewals(String id) => '/subscriptions/$id/renewals';
   static String subscriptionCancel(String id) => '/subscriptions/$id/cancel';
 

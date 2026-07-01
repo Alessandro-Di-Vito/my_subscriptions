@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:my_subscriptions/screens/analytics/analytics_screen.dart';
 import 'package:my_subscriptions/screens/auth/auth_screen.dart';
 import 'package:my_subscriptions/screens/auth/auth_state.dart';
 import 'package:my_subscriptions/screens/first_subscription/first_subscription_screen.dart';
 import 'package:my_subscriptions/screens/home/home_shell_screen.dart';
 import 'package:my_subscriptions/screens/onboarding/onboarding_screen.dart';
+import 'package:my_subscriptions/screens/settings/settings_export_screen.dart';
+import 'package:my_subscriptions/screens/settings/settings_notifications_screen.dart';
+import 'package:my_subscriptions/screens/settings/settings_preferences_screen.dart';
+import 'package:my_subscriptions/screens/settings/settings_profile_screen.dart';
+import 'package:my_subscriptions/screens/settings/settings_screen.dart';
+import 'package:my_subscriptions/screens/subscription/subscription_form_screen.dart';
 import 'package:my_subscriptions/screens/subscription/subscription_screens.dart';
+import 'package:my_subscriptions/screens/subscription/subscriptions_list_screen.dart';
 import 'package:my_subscriptions/screens/welcome/welcome_screen.dart';
 import 'package:my_subscriptions/services/auth_service.dart';
 import 'package:my_subscriptions/services/service_locator.dart';
@@ -21,16 +29,20 @@ abstract final class AppRoutes {
   static const subscriptions = '/subscriptions';
   static const analytics = '/analytics';
   static const settings = '/settings';
+  static const settingsProfile = '/settings/profile';
+  static const settingsPreferences = '/settings/preferences';
+  static const settingsNotifications = '/settings/notifications';
+  static const settingsExport = '/settings/export';
   static const subscriptionNew = '/subscriptions/new';
 
   static String subscriptionDetail(String id) => '/subscriptions/$id';
   static String subscriptionEdit(String id) => '/subscriptions/$id/edit';
 }
 
-final _rootNavigatorKey = GlobalKey<NavigatorState>();
+final rootNavigatorKey = GlobalKey<NavigatorState>();
 
 final appRouter = GoRouter(
-  navigatorKey: _rootNavigatorKey,
+  navigatorKey: rootNavigatorKey,
   initialLocation: AppRoutes.welcome,
   redirect: _redirect,
   routes: [
@@ -56,6 +68,7 @@ final appRouter = GoRouter(
       builder: (context, state) => const ForgotPasswordScreen(),
     ),
     GoRoute(
+      parentNavigatorKey: rootNavigatorKey,
       path: AppRoutes.firstSubscription,
       builder: (context, state) => const FirstSubscriptionScreen(),
     ),
@@ -99,10 +112,20 @@ final appRouter = GoRouter(
       ],
     ),
     GoRoute(
+      parentNavigatorKey: rootNavigatorKey,
       path: AppRoutes.subscriptionNew,
       builder: (context, state) => const SubscriptionFormScreen(),
     ),
     GoRoute(
+      parentNavigatorKey: rootNavigatorKey,
+      path: '/subscriptions/:id/edit',
+      builder: (context, state) {
+        final id = state.pathParameters['id']!;
+        return SubscriptionFormScreen(subscriptionId: id);
+      },
+    ),
+    GoRoute(
+      parentNavigatorKey: rootNavigatorKey,
       path: '/subscriptions/:id',
       builder: (context, state) {
         final id = state.pathParameters['id']!;
@@ -110,11 +133,24 @@ final appRouter = GoRouter(
       },
     ),
     GoRoute(
-      path: '/subscriptions/:id/edit',
-      builder: (context, state) {
-        final id = state.pathParameters['id']!;
-        return SubscriptionFormScreen(subscriptionId: id);
-      },
+      parentNavigatorKey: rootNavigatorKey,
+      path: AppRoutes.settingsProfile,
+      builder: (context, state) => const SettingsProfileScreen(),
+    ),
+    GoRoute(
+      parentNavigatorKey: rootNavigatorKey,
+      path: AppRoutes.settingsPreferences,
+      builder: (context, state) => const SettingsPreferencesScreen(),
+    ),
+    GoRoute(
+      parentNavigatorKey: rootNavigatorKey,
+      path: AppRoutes.settingsNotifications,
+      builder: (context, state) => const SettingsNotificationsScreen(),
+    ),
+    GoRoute(
+      parentNavigatorKey: rootNavigatorKey,
+      path: AppRoutes.settingsExport,
+      builder: (context, state) => const SettingsExportScreen(),
     ),
   ],
 );

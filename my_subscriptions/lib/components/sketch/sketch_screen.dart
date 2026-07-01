@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:my_subscriptions/components/button/button_widget.dart';
-import 'package:my_subscriptions/utils/colors.dart';
 import 'package:my_subscriptions/utils/smooth_style.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
@@ -22,9 +21,17 @@ class SketchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final canPop = Navigator.of(context).canPop();
+
     return Scaffold(
-      backgroundColor: AppColors.background,
-      appBar: showAppBar ? AppBar(title: Text(title)) : null,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      appBar: showAppBar
+          ? AppBar(
+              title: Text(title),
+              automaticallyImplyLeading: canPop,
+            )
+          : null,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -35,7 +42,7 @@ class SketchScreen extends StatelessWidget {
                 Text(
                   subtitle!,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: AppColors.textSecondary,
+                    color: colorScheme.onSurfaceVariant,
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -54,8 +61,8 @@ class SketchScreen extends StatelessWidget {
                           text: action.label,
                           onPressed: action.onPressed,
                           backgroundColor: Colors.transparent,
-                          textColor: AppColors.textPrimary,
-                          borderColor: AppColors.gray,
+                          textColor: colorScheme.onSurface,
+                          borderColor: colorScheme.outline,
                         ),
                 ),
               ),
@@ -84,29 +91,37 @@ class SketchCard extends StatelessWidget {
     required this.title,
     super.key,
     this.subtitle,
+    this.leading,
     this.trailing,
     this.onTap,
   });
 
   final String title;
   final String? subtitle;
+  final Widget? leading;
   final Widget? trailing;
   final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return GestureDetector(
       onTap: onTap,
       child: SmoothContainer(
         smoothness: SmoothStyle.smoothness,
         borderRadius: SmoothStyle.borderRadius,
-        color: AppColors.surface,
-        side: BorderSide(color: AppColors.textSecondary.withValues(alpha: 0.12)),
+        color: colorScheme.surface,
+        side: BorderSide(color: colorScheme.outlineVariant),
         width: double.infinity,
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Row(
             children: [
+              if (leading != null) ...[
+                leading!,
+                const SizedBox(width: 12),
+              ],
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -114,7 +129,7 @@ class SketchCard extends StatelessWidget {
                     Text(
                       title,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppColors.textPrimary,
+                        color: colorScheme.onSurface,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -123,7 +138,7 @@ class SketchCard extends StatelessWidget {
                       Text(
                         subtitle!,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: AppColors.textSecondary,
+                          color: colorScheme.onSurfaceVariant,
                         ),
                       ),
                     ],
@@ -146,22 +161,30 @@ class SketchField extends StatelessWidget {
     this.controller,
     this.obscureText = false,
     this.keyboardType,
+    this.maxLines = 1,
+    this.readOnly = false,
+    this.onTap,
   });
 
   final String label;
   final TextEditingController? controller;
   final bool obscureText;
   final TextInputType? keyboardType;
+  final int maxLines;
+  final bool readOnly;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           label,
           style: Theme.of(context).textTheme.labelLarge?.copyWith(
-            color: AppColors.textSecondary,
+            color: colorScheme.onSurfaceVariant,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -169,16 +192,80 @@ class SketchField extends StatelessWidget {
         SmoothContainer(
           smoothness: SmoothStyle.smoothness,
           borderRadius: SmoothStyle.borderRadius,
-          color: AppColors.surface,
-          side: BorderSide(color: AppColors.textSecondary.withValues(alpha: 0.12)),
+          color: colorScheme.surface,
+          side: BorderSide(color: colorScheme.outlineVariant),
           width: double.infinity,
           child: TextField(
             controller: controller,
             obscureText: obscureText,
             keyboardType: keyboardType,
+            maxLines: maxLines,
+            readOnly: readOnly,
+            onTap: onTap,
             decoration: const InputDecoration(
               border: InputBorder.none,
               contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class SketchDropdown<T> extends StatelessWidget {
+  const SketchDropdown({
+    required this.label,
+    required this.value,
+    required this.items,
+    required this.itemLabel,
+    required this.onChanged,
+    super.key,
+  });
+
+  final String label;
+  final T? value;
+  final List<T> items;
+  final String Function(T) itemLabel;
+  final ValueChanged<T?> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: Theme.of(context).textTheme.labelLarge?.copyWith(
+            color: colorScheme.onSurfaceVariant,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        const SizedBox(height: 8),
+        SmoothContainer(
+          smoothness: SmoothStyle.smoothness,
+          borderRadius: SmoothStyle.borderRadius,
+          color: colorScheme.surface,
+          side: BorderSide(color: colorScheme.outlineVariant),
+          width: double.infinity,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton<T>(
+                value: value,
+                isExpanded: true,
+                items: items
+                    .map(
+                      (item) => DropdownMenuItem<T>(
+                        value: item,
+                        child: Text(itemLabel(item)),
+                      ),
+                    )
+                    .toList(),
+                onChanged: onChanged,
+              ),
             ),
           ),
         ),

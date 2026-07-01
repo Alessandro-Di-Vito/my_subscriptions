@@ -98,6 +98,18 @@ abstract class AppLocalizations {
     Locale('it'),
   ];
 
+  /// Application display name
+  ///
+  /// In en, this message translates to:
+  /// **'MySubscriptions'**
+  String get appName;
+
+  /// Short app tagline
+  ///
+  /// In en, this message translates to:
+  /// **'Master your digital subscriptions.'**
+  String get appTagline;
+
   /// Welcome message
   ///
   /// In en, this message translates to:
@@ -107,7 +119,7 @@ abstract class AppLocalizations {
   /// Welcome screen title
   ///
   /// In en, this message translates to:
-  /// **'Welcome'**
+  /// **'MySubscriptions'**
   String get welcomeTitle;
 
   /// Welcome screen subtitle
@@ -133,6 +145,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'PRIVACY & TERMS'**
   String get welcomePrivacyTerms;
+
+  /// Empty subscriptions list title
+  ///
+  /// In en, this message translates to:
+  /// **'No subscriptions yet'**
+  String get emptyNoSubscriptions;
+
+  /// Empty subscriptions list subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Add your first service to start tracking renewals and spending.'**
+  String get emptyNoSubscriptionsSubtitle;
+
+  /// No upcoming renewals
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing due soon'**
+  String get emptyNoUpcoming;
+
+  /// No upcoming renewals subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re all set for now. We\'ll show the next renewal here.'**
+  String get emptyNoUpcomingSubtitle;
+
+  /// No active subscriptions on home
+  ///
+  /// In en, this message translates to:
+  /// **'No active subscriptions'**
+  String get emptyNoActive;
+
+  /// Analytics empty state
+  ///
+  /// In en, this message translates to:
+  /// **'Not enough data yet'**
+  String get emptyNoAnalytics;
+
+  /// Analytics empty state subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Add subscriptions to see charts and insights.'**
+  String get emptyNoAnalyticsSubtitle;
+
+  /// Preset search empty
+  ///
+  /// In en, this message translates to:
+  /// **'No services found'**
+  String get emptyNoSearchResults;
+
+  /// Subscription detail renewals empty
+  ///
+  /// In en, this message translates to:
+  /// **'No renewal history'**
+  String get emptyNoRenewals;
+
+  /// CTA to add subscription
+  ///
+  /// In en, this message translates to:
+  /// **'Add subscription'**
+  String get addSubscription;
 
   /// Onboarding step 1 title
   ///

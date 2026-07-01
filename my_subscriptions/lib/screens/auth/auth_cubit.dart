@@ -1,8 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_subscriptions/network/api_exception.dart';
+import 'package:my_subscriptions/cubit/theme_cubit.dart';
 import 'package:my_subscriptions/router/app_router.dart';
 import 'package:my_subscriptions/screens/auth/auth_state.dart';
 import 'package:my_subscriptions/services/auth_service.dart';
+import 'package:my_subscriptions/services/service_locator.dart';
 import 'package:my_subscriptions/services/subscription_service.dart';
 import 'package:my_subscriptions/services/user_service.dart';
 import 'package:my_subscriptions/utils/storage.dart';
@@ -39,6 +41,7 @@ class AuthCubit extends Cubit<AuthState> {
           defaultCurrency: currency,
         );
         await _userService.syncLocalOnboardingPreferences();
+        await getIt<ThemeCubit>().load();
         emit(
           state.copyWith(
             status: AuthStatus.success,
@@ -55,6 +58,7 @@ class AuthCubit extends Cubit<AuthState> {
       }
 
       final summary = await _subscriptionService.summary();
+      await getIt<ThemeCubit>().load();
       emit(
         state.copyWith(
           status: AuthStatus.success,

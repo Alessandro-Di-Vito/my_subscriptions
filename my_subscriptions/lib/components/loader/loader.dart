@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_subscriptions/utils/colors.dart';
 import 'package:my_subscriptions/utils/smooth_style.dart';
 import 'package:smooth_corner/smooth_corner.dart';
 
@@ -17,6 +16,8 @@ class Loader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+
     return Stack(
       children: [
         child,
@@ -29,7 +30,7 @@ class Loader extends StatelessWidget {
                   child: SmoothContainer(
                     smoothness: SmoothStyle.smoothness,
                     borderRadius: SmoothStyle.borderRadius,
-                    color: AppColors.surface,
+                    color: scheme.surface,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 32,
@@ -39,7 +40,7 @@ class Loader extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           CircularProgressIndicator(
-                            color: AppColors.primaryDark,
+                            color: scheme.primary,
                           ),
                           if (message != null) ...[
                             const SizedBox(height: 16),

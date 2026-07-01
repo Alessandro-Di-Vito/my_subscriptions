@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:my_subscriptions/components/button/button_widget.dart';
+import 'package:my_subscriptions/components/ui/app_buttons.dart';
+import 'package:my_subscriptions/components/ui/app_logo.dart';
 import 'package:my_subscriptions/l10n/app_localizations.dart';
 import 'package:my_subscriptions/router/app_router.dart';
 import 'package:my_subscriptions/screens/welcome/welcome_cubit.dart';
 import 'package:my_subscriptions/screens/welcome/welcome_state.dart';
 import 'package:my_subscriptions/services/auth_service.dart';
 import 'package:my_subscriptions/services/service_locator.dart';
-import 'package:my_subscriptions/utils/colors.dart';
 import 'package:my_subscriptions/utils/font_size.dart';
 import 'package:my_subscriptions/utils/smooth_style.dart';
 import 'package:smooth_corner/smooth_corner.dart';
@@ -111,14 +111,16 @@ class _AnimatedWelcomeViewState extends State<_AnimatedWelcomeView>
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final scheme = Theme.of(context).colorScheme;
+    final scaffoldBg = Theme.of(context).scaffoldBackgroundColor;
 
     return Scaffold(
-      backgroundColor: AppColors.surface,
+      backgroundColor: scaffoldBg,
       body: SizedBox.expand(
         child: Stack(
           fit: StackFit.expand,
           children: [
-            const Positioned.fill(child: ColoredBox(color: Colors.white)),
+            Positioned.fill(child: ColoredBox(color: scheme.surface)),
             Positioned.fill(
               child: DecoratedBox(
                 decoration: BoxDecoration(
@@ -126,9 +128,9 @@ class _AnimatedWelcomeViewState extends State<_AnimatedWelcomeView>
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      AppColors.surface,
-                      AppColors.surface.withValues(alpha: 0.12),
-                      AppColors.primary.withValues(alpha: 0.14),
+                      scaffoldBg,
+                      scaffoldBg.withValues(alpha: 0.12),
+                      scheme.primary.withValues(alpha: 0.14),
                     ],
                   ),
                 ),
@@ -169,21 +171,10 @@ class _AnimatedWelcomeViewState extends State<_AnimatedWelcomeView>
                             top: animatedLogoTop,
                             left: 0,
                             right: 0,
-                            child: child!,
+                            child: Center(child: child!),
                           );
                         },
-                        child: SmoothContainer(
-                          smoothness: SmoothStyle.smoothness,
-                          borderRadius: SmoothStyle.borderRadius,
-                          width: logoSize,
-                          height: logoSize,
-                          color: AppColors.primary.withValues(alpha: 0.12),
-                          child: Icon(
-                            Icons.subscriptions_outlined,
-                            size: logoSize * 0.55,
-                            color: AppColors.primaryDark,
-                          ),
-                        ),
+                        child: const AppLogoMark(size: 140, borderRadius: 28),
                       ),
                       Positioned.fill(
                         child: Padding(
@@ -204,7 +195,7 @@ class _AnimatedWelcomeViewState extends State<_AnimatedWelcomeView>
                                             .textTheme
                                             .headlineMedium
                                             ?.copyWith(
-                                              color: AppColors.textPrimary,
+                                              color: scheme.onSurface,
 
                                               fontWeight: FontWeight.w500,
                                             ),
@@ -217,7 +208,7 @@ class _AnimatedWelcomeViewState extends State<_AnimatedWelcomeView>
                                             .textTheme
                                             .bodyLarge
                                             ?.copyWith(
-                                              color: AppColors.textPrimary
+                                              color: scheme.onSurface
                                                   .withValues(alpha: 0.78),
                                               fontSize: bodyLarge,
                                               height: 1.55,
@@ -246,21 +237,26 @@ class _AnimatedWelcomeViewState extends State<_AnimatedWelcomeView>
                                                   SmoothStyle.borderRadius,
                                               width: double.infinity,
                                               height: 54,
-                                              color: AppColors.gray,
+                                              color: scheme.surfaceContainerHighest,
                                               child: Center(
                                                 child: CircularProgressIndicator(
                                                   strokeWidth: 2.5,
-                                                  color: AppColors.primaryDark,
+                                                  color: scheme.primary,
                                                 ),
                                               ),
                                             );
                                           }
 
-                                          return ButtonWidget(
-                                            text: l10n.welcomeButton,
-                                            onPressed: () {
-                                              context.go(AppRoutes.onboarding);
-                                            },
+                                          return Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 0,
+                                            ),
+                                            child: AppPrimaryButton(
+                                              label: l10n.welcomeButton,
+                                              onPressed: () {
+                                                context.go(AppRoutes.onboarding);
+                                              },
+                                            ),
                                           );
                                         },
                                       ),
@@ -272,7 +268,7 @@ class _AnimatedWelcomeViewState extends State<_AnimatedWelcomeView>
                                           Icon(
                                             Icons.language,
                                             size: 20,
-                                            color: AppColors.textSecondary
+                                            color: scheme.onSurfaceVariant
                                                 .withValues(alpha: 0.82),
                                           ),
                                           const SizedBox(width: 8),
@@ -282,8 +278,7 @@ class _AnimatedWelcomeViewState extends State<_AnimatedWelcomeView>
                                                 .textTheme
                                                 .bodyMedium
                                                 ?.copyWith(
-                                                  color:
-                                                      AppColors.textSecondary,
+                                                  color: scheme.onSurfaceVariant,
                                                   fontSize: bodyLarge,
                                                 ),
                                           ),
@@ -296,7 +291,7 @@ class _AnimatedWelcomeViewState extends State<_AnimatedWelcomeView>
                                             .textTheme
                                             .labelLarge
                                             ?.copyWith(
-                                              color: AppColors.textSecondary
+                                              color: scheme.onSurfaceVariant
                                                   .withValues(alpha: 0.58),
                                               fontSize: labelLarge,
                                               fontWeight: FontWeight.w700,

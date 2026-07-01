@@ -1,23 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:my_subscriptions/theme/app_palette.dart';
 
-final _primaryColor = '#63A375'.fromHex();
-final _primaryDarkColor = '#446653'.fromHex();
-final _backgroundColor = '#F7F3EC'.fromHex();
-final _surfaceColor = '#FFFFFF'.fromHex();
-final _textPrimaryColor = '#26332D'.fromHex();
-final _textSecondaryColor = '#6D7A72'.fromHex();
-final _grayColor = '#F2F2F2'.fromHex();
-final _disabledColor = '#E5E5E5'.fromHex();
-
+/// Token legacy per schermate non ancora migrate al Theme.
+/// In light mode rispecchia il mockup SubTracker.
 abstract final class AppColors {
-  static final primary = _primaryColor;
-  static final primaryDark = _primaryDarkColor;
-  static final background = _backgroundColor;
-  static final surface = _surfaceColor;
-  static final textPrimary = _textPrimaryColor;
-  static final textSecondary = _textSecondaryColor;
-  static final gray = _grayColor;
-  static final disabledColor = _disabledColor;
+  static const primary = AppPalette.lightPrimary;
+  static const primaryDark = AppPalette.lightPrimaryDark;
+  static const background = AppPalette.lightBackground;
+  static const surface = AppPalette.lightSurface;
+  static const textPrimary = AppPalette.lightTextPrimary;
+  static const textSecondary = AppPalette.lightTextSecondary;
+  static const gray = Color(0xFFF1F5F9);
+  static const disabledColor = Color(0xFFE2E8F0);
 }
 
 extension HexColor on String {

@@ -1,10 +1,18 @@
 {
   "@@locale": "it",
+  "appName": "MySubscriptions",
+  "@appName": {
+    "description": "Application display name"
+  },
+  "appTagline": "Gestisci i tuoi abbonamenti digitali.",
+  "@appTagline": {
+    "description": "Short app tagline"
+  },
   "benvenuto": "Benvenuto",
   "@benvenuto": {
     "description": "Welcome message"
   },
-  "welcomeTitle": "Benvenuto",
+  "welcomeTitle": "MySubscriptions",
   "@welcomeTitle": {
     "description": "Welcome screen title"
   },
@@ -23,6 +31,46 @@
   "welcomePrivacyTerms": "PRIVACY E TERMINI",
   "@welcomePrivacyTerms": {
     "description": "Privacy and terms label on welcome screen"
+  },
+  "emptyNoSubscriptions": "Nessun abbonamento",
+  "@emptyNoSubscriptions": {
+    "description": "Empty subscriptions list title"
+  },
+  "emptyNoSubscriptionsSubtitle": "Aggiungi il tuo primo servizio per tracciare rinnovi e spese.",
+  "@emptyNoSubscriptionsSubtitle": {
+    "description": "Empty subscriptions list subtitle"
+  },
+  "emptyNoUpcoming": "Nessuna scadenza imminente",
+  "@emptyNoUpcoming": {
+    "description": "No upcoming renewals"
+  },
+  "emptyNoUpcomingSubtitle": "Per ora sei a posto. Il prossimo rinnovo apparirà qui.",
+  "@emptyNoUpcomingSubtitle": {
+    "description": "No upcoming renewals subtitle"
+  },
+  "emptyNoActive": "Nessun abbonamento attivo",
+  "@emptyNoActive": {
+    "description": "No active subscriptions on home"
+  },
+  "emptyNoAnalytics": "Dati insufficienti",
+  "@emptyNoAnalytics": {
+    "description": "Analytics empty state"
+  },
+  "emptyNoAnalyticsSubtitle": "Aggiungi abbonamenti per vedere grafici e statistiche.",
+  "@emptyNoAnalyticsSubtitle": {
+    "description": "Analytics empty state subtitle"
+  },
+  "emptyNoSearchResults": "Nessun servizio trovato",
+  "@emptyNoSearchResults": {
+    "description": "Preset search empty"
+  },
+  "emptyNoRenewals": "Nessun rinnovo registrato",
+  "@emptyNoRenewals": {
+    "description": "Subscription detail renewals empty"
+  },
+  "addSubscription": "Aggiungi abbonamento",
+  "@addSubscription": {
+    "description": "CTA to add subscription"
   },
   "onboardingTrackTitle": "Tutti i tuoi abbonamenti in un posto",
   "@onboardingTrackTitle": {

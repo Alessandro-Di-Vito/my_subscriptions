@@ -15,7 +15,7 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 1600));
 
-    expect(find.text('Welcome'), findsWidgets);
+    expect(find.text('MySubscriptions'), findsWidgets);
     expect(find.text('Get started'), findsOneWidget);
   });
 

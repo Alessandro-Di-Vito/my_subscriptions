@@ -16,6 +16,26 @@ class UserService {
     return UserProfile.fromJson(response.data!);
   }
 
+  Future<UserProfile> updateProfile({
+    String? displayName,
+    bool showErrorBanner = true,
+  }) async {
+    final response = await _apiClient.patch<Map<String, dynamic>>(
+      ApiEndpoints.userMe,
+      data: {if (displayName != null) 'displayName': displayName},
+      showErrorBanner: showErrorBanner,
+    );
+    return UserProfile.fromJson(response.data!);
+  }
+
+  Future<UserPreferences> getPreferences({bool showErrorBanner = true}) async {
+    final response = await _apiClient.get<Map<String, dynamic>>(
+      ApiEndpoints.userPreferences,
+      showErrorBanner: showErrorBanner,
+    );
+    return UserPreferences.fromJson(response.data!);
+  }
+
   Future<bool> hasCompletedOnboarding({bool showErrorBanner = false}) async {
     try {
       final profile = await getProfile(showErrorBanner: showErrorBanner);
@@ -36,7 +56,9 @@ class UserService {
       data: preferences.toJson(),
       showErrorBanner: showErrorBanner,
     );
-    return UserPreferences.fromJson(response.data!);
+    final updated = UserPreferences.fromJson(response.data!);
+    await Storage.setPreferredCurrency(updated.defaultCurrency);
+    return updated;
   }
 
   Future<UserPreferences> completeOnboarding({
@@ -48,6 +70,13 @@ class UserService {
     );
     await Storage.setOnboardingCompleted(true);
     return UserPreferences.fromJson(response.data!);
+  }
+
+  Future<Map<String, dynamic>> exportData() async {
+    final response = await _apiClient.get<Map<String, dynamic>>(
+      ApiEndpoints.userExport,
+    );
+    return response.data!;
   }
 
   Future<void> syncLocalOnboardingPreferences() async {

@@ -9,10 +9,16 @@ class AppLocalizationsIt extends AppLocalizations {
   AppLocalizationsIt([String locale = 'it']) : super(locale);
 
   @override
+  String get appName => 'MySubscriptions';
+
+  @override
+  String get appTagline => 'Gestisci i tuoi abbonamenti digitali.';
+
+  @override
   String get benvenuto => 'Benvenuto';
 
   @override
-  String get welcomeTitle => 'Benvenuto';
+  String get welcomeTitle => 'MySubscriptions';
 
   @override
   String get welcomeSubtitle =>
@@ -26,6 +32,39 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get welcomePrivacyTerms => 'PRIVACY E TERMINI';
+
+  @override
+  String get emptyNoSubscriptions => 'Nessun abbonamento';
+
+  @override
+  String get emptyNoSubscriptionsSubtitle =>
+      'Aggiungi il tuo primo servizio per tracciare rinnovi e spese.';
+
+  @override
+  String get emptyNoUpcoming => 'Nessuna scadenza imminente';
+
+  @override
+  String get emptyNoUpcomingSubtitle =>
+      'Per ora sei a posto. Il prossimo rinnovo apparirà qui.';
+
+  @override
+  String get emptyNoActive => 'Nessun abbonamento attivo';
+
+  @override
+  String get emptyNoAnalytics => 'Dati insufficienti';
+
+  @override
+  String get emptyNoAnalyticsSubtitle =>
+      'Aggiungi abbonamenti per vedere grafici e statistiche.';
+
+  @override
+  String get emptyNoSearchResults => 'Nessun servizio trovato';
+
+  @override
+  String get emptyNoRenewals => 'Nessun rinnovo registrato';
+
+  @override
+  String get addSubscription => 'Aggiungi abbonamento';
 
   @override
   String get onboardingTrackTitle => 'Tutti i tuoi abbonamenti in un posto';

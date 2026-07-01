@@ -9,10 +9,16 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get appName => 'MySubscriptions';
+
+  @override
+  String get appTagline => 'Master your digital subscriptions.';
+
+  @override
   String get benvenuto => 'Welcome';
 
   @override
-  String get welcomeTitle => 'Welcome';
+  String get welcomeTitle => 'MySubscriptions';
 
   @override
   String get welcomeSubtitle =>
@@ -26,6 +32,39 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get welcomePrivacyTerms => 'PRIVACY & TERMS';
+
+  @override
+  String get emptyNoSubscriptions => 'No subscriptions yet';
+
+  @override
+  String get emptyNoSubscriptionsSubtitle =>
+      'Add your first service to start tracking renewals and spending.';
+
+  @override
+  String get emptyNoUpcoming => 'Nothing due soon';
+
+  @override
+  String get emptyNoUpcomingSubtitle =>
+      'You\'re all set for now. We\'ll show the next renewal here.';
+
+  @override
+  String get emptyNoActive => 'No active subscriptions';
+
+  @override
+  String get emptyNoAnalytics => 'Not enough data yet';
+
+  @override
+  String get emptyNoAnalyticsSubtitle =>
+      'Add subscriptions to see charts and insights.';
+
+  @override
+  String get emptyNoSearchResults => 'No services found';
+
+  @override
+  String get emptyNoRenewals => 'No renewal history';
+
+  @override
+  String get addSubscription => 'Add subscription';
 
   @override
   String get onboardingTrackTitle => 'All your subscriptions in one place';

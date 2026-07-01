@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_subscriptions/utils/colors.dart';
 import 'package:my_subscriptions/utils/font_size.dart';
 import 'package:my_subscriptions/utils/smooth_style.dart';
 import 'package:smooth_corner/smooth_corner.dart';
@@ -22,6 +21,7 @@ class ButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     final isEnabled = onPressed != null;
     final isSecondary = backgroundColor == Colors.transparent;
 
@@ -30,16 +30,16 @@ class ButtonWidget extends StatelessWidget {
     final Color border;
 
     if (!isEnabled) {
-      fillColor = AppColors.disabledColor;
-      labelColor = AppColors.textSecondary;
-      border = borderColor ?? AppColors.primary;
+      fillColor = scheme.surfaceContainerHighest;
+      labelColor = scheme.onSurfaceVariant;
+      border = borderColor ?? scheme.outline;
     } else if (isSecondary) {
       fillColor = Colors.transparent;
-      labelColor = textColor ?? AppColors.primary;
-      border = borderColor ?? AppColors.primary;
+      labelColor = textColor ?? scheme.primary;
+      border = borderColor ?? scheme.outline;
     } else {
-      fillColor = backgroundColor ?? AppColors.primary;
-      labelColor = textColor ?? Colors.white;
+      fillColor = backgroundColor ?? scheme.primary;
+      labelColor = textColor ?? scheme.onPrimary;
       border = borderColor ?? fillColor;
     }
 

@@ -1,10 +1,18 @@
 {
   "@@locale": "en",
+  "appName": "MySubscriptions",
+  "@appName": {
+    "description": "Application display name"
+  },
+  "appTagline": "Master your digital subscriptions.",
+  "@appTagline": {
+    "description": "Short app tagline"
+  },
   "benvenuto": "Welcome",
   "@benvenuto": {
     "description": "Welcome message"
   },
-  "welcomeTitle": "Welcome",
+  "welcomeTitle": "MySubscriptions",
   "@welcomeTitle": {
     "description": "Welcome screen title"
   },
@@ -23,6 +31,46 @@
   "welcomePrivacyTerms": "PRIVACY & TERMS",
   "@welcomePrivacyTerms": {
     "description": "Privacy and terms label on welcome screen"
+  },
+  "emptyNoSubscriptions": "No subscriptions yet",
+  "@emptyNoSubscriptions": {
+    "description": "Empty subscriptions list title"
+  },
+  "emptyNoSubscriptionsSubtitle": "Add your first service to start tracking renewals and spending.",
+  "@emptyNoSubscriptionsSubtitle": {
+    "description": "Empty subscriptions list subtitle"
+  },
+  "emptyNoUpcoming": "Nothing due soon",
+  "@emptyNoUpcoming": {
+    "description": "No upcoming renewals"
+  },
+  "emptyNoUpcomingSubtitle": "You're all set for now. We'll show the next renewal here.",
+  "@emptyNoUpcomingSubtitle": {
+    "description": "No upcoming renewals subtitle"
+  },
+  "emptyNoActive": "No active subscriptions",
+  "@emptyNoActive": {
+    "description": "No active subscriptions on home"
+  },
+  "emptyNoAnalytics": "Not enough data yet",
+  "@emptyNoAnalytics": {
+    "description": "Analytics empty state"
+  },
+  "emptyNoAnalyticsSubtitle": "Add subscriptions to see charts and insights.",
+  "@emptyNoAnalyticsSubtitle": {
+    "description": "Analytics empty state subtitle"
+  },
+  "emptyNoSearchResults": "No services found",
+  "@emptyNoSearchResults": {
+    "description": "Preset search empty"
+  },
+  "emptyNoRenewals": "No renewal history",
+  "@emptyNoRenewals": {
+    "description": "Subscription detail renewals empty"
+  },
+  "addSubscription": "Add subscription",
+  "@addSubscription": {
+    "description": "CTA to add subscription"
   },
   "onboardingTrackTitle": "All your subscriptions in one place",
   "@onboardingTrackTitle": {
